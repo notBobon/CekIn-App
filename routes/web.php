@@ -17,8 +17,11 @@ Route::get('/welcome', [WelcomeController::class,'index'])->name('welcome');
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+    Route::redirect('/', '/dashboard');
+
     Route::resource('weather', WeatherController::class);
     Route::resource('user', UserController::class);
     Route::get('/about', function () {
